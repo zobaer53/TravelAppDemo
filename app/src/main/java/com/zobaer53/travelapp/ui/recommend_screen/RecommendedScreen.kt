@@ -14,10 +14,11 @@ import androidx.navigation.NavHostController
 import com.zobaer53.travelapp.R
 import com.zobaer53.travelapp.ui.main_screen.composables.RecommendedItem
 import com.zobaer53.travelapp.ui.theme.DarkColorScheme
+import com.zobaer53.travelapp.domain.model.LocationDetailsEntity
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecommendedScreen(navController: NavHostController) {
+fun RecommendedScreen(navController: NavHostController, locations: List<LocationDetailsEntity>) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -52,14 +53,6 @@ fun RecommendedScreen(navController: NavHostController) {
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            val locations = listOf(
-                Location("Mountain Safari", "India", R.drawable.safari_static),
-                Location("Beach Side", "Hawaii", R.drawable.safari_static),
-                Location("Safari Park", "Thailand", R.drawable.safari_static),
-                Location("Tiger Hill", "Nepal", R.drawable.safari_static),
-                Location("Thai Zoo House", "Thailand", R.drawable.safari_static),
-                Location("Climb Forest", "Hawaii", R.drawable.safari_static)
-            )
 
             items(locations) { location ->
                 RecommendedItem(location,navController)
@@ -67,5 +60,3 @@ fun RecommendedScreen(navController: NavHostController) {
         }
     }
 }
-
-data class Location(val title: String, val location: String, val imageRes: Int)

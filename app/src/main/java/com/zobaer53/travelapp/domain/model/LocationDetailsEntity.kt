@@ -1,10 +1,10 @@
-package com.zobaer53.travelapp.data.local.model
+package com.zobaer53.travelapp.domain.model
 
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "mountain_safari")
+@Entity
 data class LocationDetailsEntity(
     @PrimaryKey(autoGenerate = true) val id: Int = 0, // Auto-generated primary key
     val propertyName: String,

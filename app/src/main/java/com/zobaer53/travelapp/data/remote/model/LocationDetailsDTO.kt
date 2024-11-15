@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class LocationDetailsApiResponse(
+data class LocationDetailsDTO(
     @SerialName("property_name") val propertyName: String,
     @SerialName("location") val location: String,
     @SerialName("rating") val rating: Double,

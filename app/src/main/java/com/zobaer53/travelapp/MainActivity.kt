@@ -3,7 +3,6 @@ package com.zobaer53.travelapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -38,15 +38,16 @@ class MainActivity : ComponentActivity() {
                             modifier = Modifier.fillMaxSize(),
                             contentScale = ContentScale.Crop
                         )
+                        val mainViewModel : MainViewModel = viewModel()
 
                         val navController = rememberNavController()
                         NavHost(
                             navController = navController,
                             startDestination = "home"
                         ) {
-                            composable("home") { MainScreen(navController) }
+                            composable("home") { MainScreen(navController,mainViewModel) }
                             composable("mountainSafari") { MountainSafariCard(navController) }
-                            composable("recommended") { RecommendedScreen(navController) }
+                            composable("recommended") { RecommendedScreen(navController,mainViewModel.uiState.value.data) }
                         }
                     }
                 }

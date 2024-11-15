@@ -1,9 +1,9 @@
 package com.zobaer53.travelapp.data.local
 
-import com.zobaer53.travelapp.data.local.model.LocationDetailsEntity
-import com.zobaer53.travelapp.data.remote.model.LocationDetailsApiResponse
+import com.zobaer53.travelapp.domain.model.LocationDetailsEntity
+import com.zobaer53.travelapp.data.remote.model.LocationDetailsDTO
 
-fun LocationDetailsApiResponse.toEntity(): LocationDetailsEntity {
+fun LocationDetailsDTO.toEntity(): LocationDetailsEntity {
     return LocationDetailsEntity(
         propertyName = this.propertyName,
         location = this.location,

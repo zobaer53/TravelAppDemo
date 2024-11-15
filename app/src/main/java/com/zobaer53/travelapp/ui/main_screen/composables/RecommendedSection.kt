@@ -27,18 +27,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.zobaer53.travelapp.R
-import com.zobaer53.travelapp.ui.recommend_screen.Location
+import com.zobaer53.travelapp.domain.model.LocationDetailsEntity
 import com.zobaer53.travelapp.ui.theme.TypographyTA
 
 
 @Composable
-fun RecommendedSection(navController: NavHostController) {
+fun RecommendedSection(navController: NavHostController, locations: List<LocationDetailsEntity>) {
     LazyRow(horizontalArrangement = Arrangement.spacedBy(15.dp)) {
-        val locations = listOf(
+       /* val locations = listOf(
             Location("Mountain Safari", "India", R.drawable.safari_static),
             Location("Beach Side", "Hawaii", R.drawable.safari_static),
             Location("Safari Park", "Thailand", R.drawable.safari_static)
-        )
+        )*/
         items(locations) { location ->
             RecommendedItem(location, navController)
         }
@@ -46,7 +46,7 @@ fun RecommendedSection(navController: NavHostController) {
 }
 
 @Composable
-fun RecommendedItem(destination: Location, navController: NavHostController) {
+fun RecommendedItem(destination: LocationDetailsEntity, navController: NavHostController) {
     Surface(
         shape = RoundedCornerShape(15.dp),
         color = Color.DarkGray,
@@ -61,7 +61,7 @@ fun RecommendedItem(destination: Location, navController: NavHostController) {
         ) {
             Image(
                 painter = painterResource(id = R.drawable.safari_static),
-                contentDescription = destination.title,
+                contentDescription = destination.propertyName,
                 modifier = Modifier
                     .fillMaxSize()
                     .clip(MaterialTheme.shapes.medium),
@@ -78,7 +78,7 @@ fun RecommendedItem(destination: Location, navController: NavHostController) {
                 }
                 Column {
                     Text(
-                        text = destination.title,
+                        text = destination.propertyName,
                         color = Color.White,
                         style = TypographyTA.titleMedium
                     )
