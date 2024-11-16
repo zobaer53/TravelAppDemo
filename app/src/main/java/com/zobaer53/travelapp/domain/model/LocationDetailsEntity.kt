@@ -15,6 +15,6 @@ data class LocationDetailsEntity(
     val fareUnit: String,
     val isAvailable: Boolean,
     val heroImage: String,
-    val detailImage: String,
+    val detailImage:  List<String>,
     val currency: String
 )

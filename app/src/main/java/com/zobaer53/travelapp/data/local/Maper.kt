@@ -5,15 +5,15 @@ import com.zobaer53.travelapp.data.remote.model.LocationDetailsDTO
 
 fun LocationDetailsDTO.toEntity(): LocationDetailsEntity {
     return LocationDetailsEntity(
-        propertyName = this.propertyName,
+        propertyName = this.property_name,
         location = this.location,
         rating = this.rating,
         description = this.description,
         fare = this.fare,
-        fareUnit = this.fareUnit,
-        isAvailable = this.isAvailable,
-        heroImage = this.heroImage,
-        detailImage = this.detailImage,
+        fareUnit = this.fare_unit,
+        isAvailable = this.is_available,
+        heroImage = this.hero_image,
+        detailImage = this.detail_images, // Pass list
         currency = this.currency
     )
 }

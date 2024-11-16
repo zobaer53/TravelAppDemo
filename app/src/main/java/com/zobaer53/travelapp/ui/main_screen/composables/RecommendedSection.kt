@@ -29,6 +29,10 @@ import androidx.navigation.NavHostController
 import com.zobaer53.travelapp.R
 import com.zobaer53.travelapp.domain.model.LocationDetailsEntity
 import com.zobaer53.travelapp.ui.theme.TypographyTA
+import coil3.compose.AsyncImage
+import com.google.gson.Gson
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 
 @Composable
@@ -57,10 +61,16 @@ fun RecommendedItem(destination: LocationDetailsEntity, navController: NavHostCo
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .clickable { navController.navigate("mountainSafari") }
+                .clickable {
+                    val destinationJson = URLEncoder.encode(
+                        Gson().toJson(destination),
+                        StandardCharsets.UTF_8.toString()
+                    ) // Encode the JSON string
+                    navController.navigate("detailsScreen/$destinationJson")
+                }
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.safari_static),
+            AsyncImage(
+                model = destination.heroImage,
                 contentDescription = destination.propertyName,
                 modifier = Modifier
                     .fillMaxSize()

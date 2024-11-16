@@ -23,12 +23,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.zobaer53.travelapp.domain.model.LocationDetailsEntity
 import com.zobaer53.travelapp.ui.theme.SecondaryColorTA
 import com.zobaer53.travelapp.ui.theme.LightSecondaryColorTA
 
 // Reusable GradientButton Component
 @Composable
-fun GradientButton() {
+fun GradientButton(locationDetails: LocationDetailsEntity) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -51,14 +52,14 @@ fun GradientButton() {
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "$5,307",
+                        text = if(locationDetails.currency == "USD") "$${locationDetails.fare}" else "${locationDetails.currency}${locationDetails.fare}",
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 14.sp
                     )
                     Spacer(modifier = Modifier.width(4.dp)) // Space between price and text
                     Text(
-                        text = "/PER DAY",
+                        text = "/${locationDetails.fareUnit}",
                         color = Color.Gray,
                         fontSize = 10.sp // Slightly smaller for differentiation
                     )
@@ -88,7 +89,7 @@ fun GradientButton() {
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "Book Now",
+                            text = if(locationDetails.isAvailable)"Book Now" else "Not Available",
                             color = Color.Black,
                             fontWeight = FontWeight.Bold,
                             fontSize = 16.sp

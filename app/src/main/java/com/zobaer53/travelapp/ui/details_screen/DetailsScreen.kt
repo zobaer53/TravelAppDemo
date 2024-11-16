@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.zobaer53.travelapp.R
+import com.zobaer53.travelapp.domain.model.LocationDetailsEntity
 import com.zobaer53.travelapp.ui.details_screen.composables.GradientButton
 import com.zobaer53.travelapp.ui.details_screen.composables.ImageSlider
 import com.zobaer53.travelapp.ui.details_screen.composables.LocationText
@@ -31,7 +32,7 @@ import com.zobaer53.travelapp.ui.details_screen.composables.SectionHeader
 
 // Main Screen Component for Mountain Safari Details
 @Composable
-fun MountainSafariCard(navController: NavHostController) {
+fun DetailsScreen(navController: NavHostController, locationDetails: LocationDetailsEntity) {
     Scaffold { innerPadding ->
         Column(
             modifier = Modifier
@@ -42,9 +43,15 @@ fun MountainSafariCard(navController: NavHostController) {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(400.dp)
+
             ) {
+
                 // Using ImageSlider component with a list of images
-                ImageSlider(imageResIds = listOf(R.drawable.safari_static, R.drawable.safari_static, R.drawable.safari_static))
+                ImageSlider(
+                    imageResIds = locationDetails.detailImage,Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp)
+                        .align(Alignment.BottomCenter))
 
                 // Back Button
                 IconButton(
@@ -69,25 +76,25 @@ fun MountainSafariCard(navController: NavHostController) {
                 // Title Row
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "Mountain Safari",
+                        text = locationDetails.propertyName,
                         color = Color.White,
                         fontWeight = FontWeight.Bold,
                         fontSize = 24.sp,
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
                     Spacer(modifier = Modifier.weight(1f))
-                    RatingText(rating = "4.9")
+                    RatingText(rating = locationDetails.rating.toString())
                 }
 
                 // Location Row
-                LocationText(location = "Kolkata, India")
+                LocationText(location = locationDetails.location)
                 Spacer(modifier = Modifier.height(20.dp))
 
                 // About Section
                 SectionHeader(title = "About the trip 😊")
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "List of Inspiring Slogans a fresh coat for a fresh start meet the world make traveling fun explore the globe with a new sky, a new life let us help you find ...",
+                    text = locationDetails.description,
                     color = Color.White,
                     fontSize = 14.sp,
                     modifier = Modifier.padding(16.dp)
@@ -95,7 +102,7 @@ fun MountainSafariCard(navController: NavHostController) {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-              GradientButton()
+              GradientButton(locationDetails)
             }
         }
     }

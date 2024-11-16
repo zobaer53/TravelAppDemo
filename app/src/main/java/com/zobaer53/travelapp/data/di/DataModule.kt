@@ -2,6 +2,8 @@ package com.zobaer53.travelapp.data.di
 
 import android.content.Context
 import androidx.work.WorkManager
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.zobaer53.travelapp.data.local.AppDatabase
 import com.zobaer53.travelapp.data.local.LocationDetailsDao
 import com.zobaer53.travelapp.data.remote.ApiService
@@ -12,6 +14,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -20,11 +24,30 @@ import javax.inject.Singleton
 @Module
 object DataModule {
 
+    @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit {
+    fun providesHttpLoggingInterceptor() = HttpLoggingInterceptor()
+        .apply{
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+
+    @Singleton
+    @Provides
+    fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(httpLoggingInterceptor)
+            .build()
+    }
+    @Singleton
+    @Provides
+    fun provideGson(): Gson = GsonBuilder().setLenient().create()
+
+    @Provides
+    fun provideRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://9133e3e4055644b890c2ca078f3163ad.api.mockbin.io/")
-            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://d9c8de84d7e4424dbbb59e258f353159.api.mockbin.io/")
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .client(okHttpClient)
             .build()
     }
 

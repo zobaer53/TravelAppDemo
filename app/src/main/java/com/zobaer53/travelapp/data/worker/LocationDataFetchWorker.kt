@@ -2,6 +2,7 @@ package com.zobaer53.travelapp.data.worker
 
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -22,10 +23,15 @@ class LocationDataFetchWorker @AssistedInject constructor(
 
     override suspend fun doWork(): Result {
         return try {
-            val response = apiService.getLocationDetails().toEntity()
-            dao.insertLocationDetails(response)
+            val response = apiService.getLocationDetails()
+            response.body()?.forEach{
+                dao.insertLocationDetails(it.toEntity())
+            }
+            Log.e("worker", response.body().toString())
             Result.success()
         } catch (e: Exception) {
+            Log.e("worker", e.toString())
+
             Result.failure()
         }
     }

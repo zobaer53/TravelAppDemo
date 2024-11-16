@@ -32,6 +32,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -72,6 +73,13 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    //coil
+    implementation(libs.coil.compose)
+    implementation(libs.coil.network)
+
+    //google fonts
+    implementation(libs.google.fonts)
+
     implementation(libs.work.manager)
     implementation(libs.work.manager.dagger)
     kapt(libs.work.manager.dagger.kapt)
@@ -82,9 +90,15 @@ dependencies {
 
     implementation(libs.retrofit)
     implementation(libs.retrofit.gson.convertor)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    testImplementation(libs.okhttp.mockwebserver)
+
 
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
 
     implementation(libs.kotlinx.serialization )
+    implementation(libs.javapoet)
+
 }

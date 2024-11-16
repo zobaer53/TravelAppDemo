@@ -6,16 +6,16 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class LocationDetailsDTO(
-    @SerialName("property_name") val propertyName: String,
-    @SerialName("location") val location: String,
-    @SerialName("rating") val rating: Double,
-    @SerialName("description") val description: String,
-    @SerialName("fare") val fare: Double,
-    @SerialName("fare_unit") val fareUnit: String,
-    @SerialName("is_available") val isAvailable: Boolean,
-    @SerialName("hero_image") val heroImage: String,
-    @SerialName("detail_image") val detailImage: String,
-    @SerialName("currency") val currency: String
+    val property_name: String,
+    val location: String,
+    val rating: Double,
+    val description: String,
+    val fare: Double,
+    val fare_unit: String,
+    val is_available: Boolean,
+    val hero_image: String,
+    val detail_images: List<String>,
+    val currency: String
 )
 
 
