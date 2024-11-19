@@ -72,11 +72,14 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    // MockK
+    testImplementation ("io.mockk:mockk:1.13.5")
 
-    //test
-    testImplementation(libs.mockk)
-    testImplementation(libs.turbine)
-    testImplementation(libs.coroutines.test)
+// Turbine for Flow testing
+    testImplementation ("app.cash.turbine:turbine:0.13.0")
+
+// Coroutine testing
+    testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
 
     //coil
     implementation(libs.coil.compose)

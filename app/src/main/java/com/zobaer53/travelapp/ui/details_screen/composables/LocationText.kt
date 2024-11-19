@@ -15,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zobaer53.travelapp.R
+import com.zobaer53.travelapp.ui.theme.TypographyTA
 
 // Reusable LocationText Component
 @Composable
@@ -33,7 +34,7 @@ fun LocationText(location: String) {
         Text(
             text = location,
             color = Color.Gray,
-            fontSize = 14.sp
+            style = TypographyTA.bodySmall,
         )
     }
 }

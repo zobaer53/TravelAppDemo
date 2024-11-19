@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -15,6 +16,7 @@ import com.zobaer53.travelapp.R
 import com.zobaer53.travelapp.ui.main_screen.composables.RecommendedItem
 import com.zobaer53.travelapp.ui.theme.DarkColorScheme
 import com.zobaer53.travelapp.domain.model.LocationDetailsEntity
+import com.zobaer53.travelapp.ui.theme.TypographyTA
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -22,7 +24,7 @@ fun RecommendedScreen(navController: NavHostController, locations: List<Location
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "Recommended", modifier = Modifier.padding(start = 50.dp)) },
+                title = { Text(text = "Recommended", style = TypographyTA.titleMedium, modifier = Modifier.padding(start = 50.dp)) },
                 navigationIcon = {
                     IconButton(onClick = {
                         navController.popBackStack()
@@ -54,8 +56,8 @@ fun RecommendedScreen(navController: NavHostController, locations: List<Location
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
 
-            items(locations) { location ->
-                RecommendedItem(location,navController)
+            itemsIndexed(locations) { index,location, ->
+                RecommendedItem(location,navController, showBookmark = index ==0)
             }
         }
     }

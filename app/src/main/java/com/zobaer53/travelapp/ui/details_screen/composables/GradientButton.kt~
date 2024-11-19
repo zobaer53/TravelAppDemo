@@ -30,7 +30,6 @@ import com.zobaer53.travelapp.domain.model.LocationDetailsEntity
 import com.zobaer53.travelapp.ui.theme.SecondaryColorTA
 import com.zobaer53.travelapp.ui.theme.LightSecondaryColorTA
 import com.zobaer53.travelapp.ui.theme.TypographyTA
-import java.text.NumberFormat
 import java.util.Locale
 import kotlin.math.roundToInt
 

@@ -42,9 +42,12 @@ fun MainScreen(navController: NavHostController, mainViewModel: MainViewModel) {
             Spacer(modifier = Modifier.height(30.dp))
             SectionHeader(title = "Popular Categories")
             PopularCategories()
+            Spacer(modifier = Modifier.height(30.dp))
             SectionHeader(title = "Recommended", actionText = "See All") {
                 navController.navigate("recommended")
             }
+            
+            Spacer(modifier = Modifier.height(30.dp))
 
             // Displaying recommended section only if data exists
             if (uiState.data.isNotEmpty()) {

@@ -74,6 +74,7 @@ coil-network = { module = "io.coil-kt.coil3:coil-network-okhttp", version = "3.0
 google-fonts = { module = "androidx.compose.ui:ui-text-google-fonts", version = "1.7.5" }
 
 #test
+[libraries]
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-test" }

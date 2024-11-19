@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.zobaer53.travelapp.R
 import com.zobaer53.travelapp.ui.theme.DarkColorScheme
-import com.zobaer53.travelapp.ui.theme.TypographyTA
 
 @Composable
 fun PopularCategories() {
@@ -65,7 +64,7 @@ fun CategoryItem(category: String) {
             Text(
                 text = category,
                 color = Color.White,
-                style = TypographyTA.labelMedium,
+                fontSize = 13.sp
             )
         }
     }

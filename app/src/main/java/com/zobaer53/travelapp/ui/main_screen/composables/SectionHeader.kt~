@@ -27,12 +27,15 @@ fun SectionHeader(title: String, actionText: String? = null, onActionClick: (() 
             text = title,
             color = Color.White,
             style = TypographyTA.titleMedium
+            /*fontWeight = FontWeight.Bold,
+            fontSize = 18.sp*/
         )
         if (actionText != null && onActionClick != null) {
             Text(
                 text = actionText,
                 color = SecondaryColorTA,
                 style = TypographyTA.labelMedium,
+                /*fontSize = 14.sp,*/
                 modifier = Modifier.clickable(onClick = onActionClick)
             )
         }

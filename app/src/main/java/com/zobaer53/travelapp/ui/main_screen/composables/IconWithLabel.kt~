@@ -28,7 +28,7 @@ fun IconWithLabel(iconRes: Int, text: String) {
         )
         Text(
             text = text,
-            color = Color.Gray,
+            color = Color.White,
             style = TypographyTA.labelMedium,
         )
     }
