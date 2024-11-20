@@ -9,6 +9,7 @@ import androidx.work.WorkerParameters
 import com.zobaer53.travelapp.data.local.LocationDetailsDao
 import com.zobaer53.travelapp.data.local.toEntity
 import com.zobaer53.travelapp.data.remote.ApiService
+import com.zobaer53.travelapp.domain.model.LocationDetailsEntity
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 
@@ -24,9 +25,11 @@ class LocationDataFetchWorker @AssistedInject constructor(
     override suspend fun doWork(): Result {
         return try {
             val response = apiService.getLocationDetails()
-            response.body()?.forEach{
-                dao.insertLocationDetails(it.toEntity())
+            val entityList = mutableListOf<LocationDetailsEntity>()
+             response.body()?.forEach{
+                entityList.add(it.toEntity())
             }
+            dao.replaceLocationDetails(entityList)
             Log.e("worker", response.body().toString())
             Result.success()
         } catch (e: Exception) {
